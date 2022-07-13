@@ -15,8 +15,8 @@ public class Config {
     private final String QUEUE_NAME = "calculate-price";
 
     @Bean
-    public Receiver listener() {
-        return new Receiver();
+    public Consumer listener() {
+        return new Consumer();
     }
 
     @Bean
@@ -35,5 +35,12 @@ public class Config {
                 .to(directExchange)
                 .with(ROUTING_KEY);
     }
+/*
+    @Bean
+    public AsyncRabbitTemplate asyncRabbitTemplate(RabbitTemplate rabbitTemplate) {
+        return new AsyncRabbitTemplate(rabbitTemplate);
+    }
+
+ */
 
 }

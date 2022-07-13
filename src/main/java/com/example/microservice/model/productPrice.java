@@ -1,6 +1,6 @@
-package com.example.microservice.testDTOs;
+package com.example.microservice.model;
 
-public class PriceMSResponse {
+public class productPrice {
 
     float price;
 

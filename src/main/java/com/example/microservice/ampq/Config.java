@@ -14,10 +14,12 @@ public class Config {
     private final String DIRECT_EXCHANGE = "price-service-exchange";
     private final String QUEUE_NAME = "calculate-price";
 
-    @Bean
+   /*
+   @Bean
     public Consumer listener() {
         return new Consumer();
     }
+    */
 
     @Bean
     public DirectExchange directExchange() {

@@ -1,6 +1,7 @@
 package com.example.microservice.service;
 
-import com.example.microservice.model.productPrice;
+import com.example.microservice.model.ComponentPrices;
+import com.example.microservice.model.ProductPrice;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -8,7 +9,8 @@ import java.util.List;
 @Service
 public class PriceService {
 
-    public float calculate(List<Float> request) { //todo soll eig nicht static sein aber receiver will so
+    public float calculate(ComponentPrices request) {
+
 
         /*
         // convert json to floats
@@ -37,10 +39,8 @@ public class PriceService {
         return 0f;
     }
 
-    private static productPrice getPriceResponse(float amount) { //todo auch hier static
-        productPrice priceResponse = new productPrice();
-        priceResponse.setPrice(amount);
-        return priceResponse;
+    private ProductPrice getPriceResponse(float amount) {
+        return new ProductPrice(amount);
     }
 
 }

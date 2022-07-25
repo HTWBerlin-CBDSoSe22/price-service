@@ -1,4 +1,4 @@
 package com.example.microservice.exception;
 
-public class ComponentPricesNotFoundException {
+public class ComponentPricesNotFoundException extends Exception {
 }

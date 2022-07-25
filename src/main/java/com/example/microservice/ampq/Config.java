@@ -35,12 +35,12 @@ public class Config {
                 .to(directExchange)
                 .with(ROUTING_KEY);
     }
+
 /*
     @Bean
     public AsyncRabbitTemplate asyncRabbitTemplate(RabbitTemplate rabbitTemplate) {
         return new AsyncRabbitTemplate(rabbitTemplate);
     }
-
  */
 
 }

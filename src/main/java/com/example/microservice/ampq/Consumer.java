@@ -14,20 +14,9 @@ public class Consumer {
     @Autowired
     PriceService priceService;
 
-    private RabbitTemplate rabbitTemplate;
-
-    @Autowired
-    public Consumer(RabbitTemplate rabbitTemplate) {
-        this.rabbitTemplate = rabbitTemplate;
-    }
-
-    @RabbitListener(queues = "calculate-price", returnExceptions = "true")
+    @RabbitListener(queues = "#{queue.name}", returnExceptions = "true")
     public ProductPrice handleRequest(ComponentPrices request) {
         System.out.println("Receiving: " + request.toString());
         return priceService.calculate(request);
-        // String ResponseString = priceService.calculate(request).;
-        //todo doch mit return ?
-        //rabbitTemplate.convertAndSend("calculate-price", "dfl");
     }
-
 }

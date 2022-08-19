@@ -8,8 +8,12 @@ public class ComponentPrices {
     public ComponentPrices(List<Float> priceList) {
         this.priceList = priceList;
     }
+    public ComponentPrices(){}
 
     public List<Float> getPriceList() {
         return priceList;
+    }
+    public void setPriceList(List<Float> priceList) {
+        this.priceList = priceList;
     }
 }

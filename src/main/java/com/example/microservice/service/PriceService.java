@@ -18,8 +18,6 @@ public class PriceService {
         for (int j = 0; j < priceList.size(); j++) {
             amount += priceList.get(j);
         }
-
         return new ProductPrice(amount);
     }
-
 }

@@ -7,7 +7,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class PriceServiceApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(PriceServiceApplication.class, args).close();
+		SpringApplication.run(PriceServiceApplication.class, args);
 	}
-
 }

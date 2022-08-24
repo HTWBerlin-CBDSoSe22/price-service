@@ -1,5 +1,7 @@
 package com.example.microservice.ampq;
 
+import com.example.microservice.exception.ComponentPricesNotFoundException;
+import com.example.microservice.exception.FloatingPointOverflowException;
 import com.example.microservice.model.ComponentPrices;
 import com.example.microservice.model.ProductPrice;
 import com.example.microservice.service.PriceService;
@@ -14,7 +16,7 @@ public class Consumer {
     PriceService priceService;
 
     @RabbitListener(queues = "#{queue.name}", returnExceptions = "true")
-    public ProductPrice handleRequest(ComponentPrices request) {
+    public ProductPrice handleRequest(ComponentPrices request) throws ComponentPricesNotFoundException, FloatingPointOverflowException {
         System.out.println("Receiving: " + request.toString());
         return priceService.calculateProductPrice(request);
     }

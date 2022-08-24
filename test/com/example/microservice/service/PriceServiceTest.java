@@ -1,5 +1,7 @@
 package com.example.microservice.service;
 
+import com.example.microservice.exception.ComponentPricesNotFoundException;
+import com.example.microservice.exception.FloatingPointOverflowException;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -17,7 +19,7 @@ class PriceServiceTest {
     private final PriceService priceService = new PriceService();
 
     @Test
-    void calculateHappyTwoComponents(){
+    void calculateHappyTwoComponents() throws ComponentPricesNotFoundException, FloatingPointOverflowException {
         priceList.add(5f);
         priceList.add(3f);
         productPrice.setPrice(8f);
@@ -26,7 +28,7 @@ class PriceServiceTest {
     }
 
     @Test
-    void calculateHappyThreeComponents(){
+    void calculateHappyThreeComponents() throws ComponentPricesNotFoundException, FloatingPointOverflowException {
         priceList.add(5f);
         priceList.add(5f);
         priceList.add(3f);
@@ -36,7 +38,7 @@ class PriceServiceTest {
     }
 
     @Test
-    void calculateHappyJustOneComponent(){
+    void calculateHappyJustOneComponent() throws ComponentPricesNotFoundException, FloatingPointOverflowException {
         priceList.add(5f);
         productPrice.setPrice(5f);
 
@@ -44,7 +46,7 @@ class PriceServiceTest {
     }
 
     @Test
-    void calculateHappyOddNumbersOne(){
+    void calculateHappyOddNumbersOne() throws ComponentPricesNotFoundException, FloatingPointOverflowException {
         priceList.add(5.7f);
         priceList.add(4.3f);
         productPrice.setPrice(10f);
@@ -53,7 +55,7 @@ class PriceServiceTest {
     }
 
     @Test
-    void calculateHappyOddNumbersTwo(){
+    void calculateHappyOddNumbersTwo() throws ComponentPricesNotFoundException, FloatingPointOverflowException {
         priceList.add(5.7f);
         priceList.add(4.4f);
         productPrice.setPrice(10.1f);
@@ -67,7 +69,7 @@ class PriceServiceTest {
         priceList.add(-3f);
         productPrice.setPrice(10f);
 
-        assertThrows(IllegalArgumentException.class, ()
+        assertThrows(ComponentPricesNotFoundException.class, ()
                 -> {priceService.calculateProductPrice(componentPrices);} );
     }
 
@@ -77,12 +79,12 @@ class PriceServiceTest {
         priceList.add(0f);
         productPrice.setPrice(10f);
 
-        assertThrows(IllegalArgumentException.class, ()
+        assertThrows(ComponentPricesNotFoundException.class, ()
                 -> {priceService.calculateProductPrice(componentPrices);} );
     }
 
     @Test
-    void calculateBadNoComponent(){
+    void calculateBadNoComponent() throws ComponentPricesNotFoundException, FloatingPointOverflowException {
         productPrice.setPrice(0f);
 
         assertEquals(priceService.calculateProductPrice(componentPrices).getPrice(),productPrice.getPrice());
@@ -94,12 +96,12 @@ class PriceServiceTest {
         priceList.add(Float.MAX_VALUE);
         productPrice.setPrice(0f);
 
-        assertThrows(IllegalStateException.class, ()
+        assertThrows(FloatingPointOverflowException.class, ()
                 -> {priceService.calculateProductPrice(componentPrices);} );
     }
 
     @Test
-    void calculateHappyLotsOfComponents(){
+    void calculateHappyLotsOfComponents() throws ComponentPricesNotFoundException, FloatingPointOverflowException {
         priceList.add(5f);
         priceList.add(5f);
         priceList.add(5f);

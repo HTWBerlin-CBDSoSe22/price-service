@@ -9,7 +9,7 @@ import java.util.List;
 @Service
 public class PriceService {
 
-    public ProductPrice calculateProductPrice(ComponentPrices request) throws IllegalArgumentException {
+    public ProductPrice calculateProductPrice(ComponentPrices request) throws IllegalArgumentException, IllegalStateException {
         float amount = 0;
 
         List<Float> priceList = request.getPriceList();
@@ -20,9 +20,9 @@ public class PriceService {
             }
             amount += priceList.get(j);
         }
+        if (amount >= Float.MAX_VALUE) {
+            throw new IllegalStateException("Produkt konnte nicht erstellt werden");
+        }
         return new ProductPrice(amount);
-    }
-
-    public PriceService() {
     }
 }

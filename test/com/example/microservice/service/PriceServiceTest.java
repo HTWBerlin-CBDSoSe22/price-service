@@ -88,4 +88,142 @@ class PriceServiceTest {
         assertEquals(priceService.calculateProductPrice(componentPrices).getPrice(),productPrice.getPrice());
     }
 
+    @Test
+    void calculateBadFloatExploit(){
+        priceList.add(1f);
+        priceList.add(Float.MAX_VALUE);
+        productPrice.setPrice(0f);
+
+        assertThrows(IllegalStateException.class, ()
+                -> {priceService.calculateProductPrice(componentPrices);} );
+    }
+
+    @Test
+    void calculateHappyLotsOfComponents(){
+        priceList.add(5f);
+        priceList.add(5f);
+        priceList.add(5f);
+        priceList.add(5f);
+        priceList.add(5f);
+        priceList.add(5f);
+        priceList.add(5f);
+        priceList.add(5f);
+        priceList.add(5f);
+        priceList.add(5f);
+        priceList.add(5f);
+        priceList.add(5f);
+        priceList.add(5f);
+        priceList.add(5f);
+        priceList.add(5f);
+        priceList.add(5f);
+        priceList.add(5f);
+        priceList.add(5f);
+        priceList.add(5f);
+        priceList.add(5f);
+        priceList.add(5f);
+        priceList.add(5f);
+        priceList.add(5f);
+        priceList.add(5f);
+        priceList.add(5f);
+        priceList.add(5f);
+        priceList.add(5f);
+        priceList.add(5f);
+        priceList.add(5f);
+        priceList.add(5f);
+        priceList.add(5f);
+        priceList.add(5f);
+        priceList.add(5f);
+        priceList.add(5f);
+        priceList.add(5f);
+        priceList.add(5f);
+        priceList.add(5f);
+        priceList.add(5f);
+        priceList.add(5f);
+        priceList.add(5f);
+        priceList.add(5f);
+        priceList.add(5f);
+        priceList.add(5f);
+        priceList.add(5f);
+        priceList.add(5f);
+        priceList.add(5f);
+        priceList.add(5f);
+        priceList.add(5f);
+        priceList.add(5f);
+        priceList.add(5f);
+        priceList.add(5f);
+        priceList.add(5f);
+        priceList.add(5f);
+        priceList.add(5f);
+        priceList.add(5f);
+        priceList.add(5f);
+        priceList.add(5f);
+        priceList.add(5f);
+        priceList.add(5f);
+        priceList.add(5f);
+        priceList.add(5f);
+        priceList.add(5f);
+        priceList.add(5f);
+        priceList.add(5f);
+        priceList.add(5f);
+        priceList.add(5f);
+        priceList.add(5f);
+        priceList.add(5f);
+        priceList.add(5f);
+        priceList.add(5f);
+        priceList.add(5f);
+        priceList.add(5f);
+        priceList.add(5f);
+        priceList.add(5f);
+        priceList.add(5f);
+        priceList.add(5f);
+        priceList.add(5f);
+        priceList.add(5f);
+        priceList.add(5f);
+        priceList.add(5f);
+        priceList.add(5f);
+        priceList.add(5f);
+        priceList.add(5f);
+        priceList.add(5f);
+        priceList.add(5f);
+        priceList.add(5f);
+        priceList.add(5f);
+        priceList.add(5f);
+        priceList.add(5f);
+        priceList.add(5f);
+        priceList.add(5f);
+        priceList.add(5f);
+        priceList.add(5f);
+        priceList.add(5f);
+        priceList.add(5f);
+        priceList.add(5f);
+        priceList.add(5f);
+        priceList.add(5f);
+        priceList.add(5f);
+        priceList.add(5f);
+        priceList.add(5f);
+        priceList.add(5f);
+        priceList.add(5f);
+        priceList.add(5f);
+        priceList.add(5f);
+        priceList.add(5f);
+        priceList.add(5f);
+        priceList.add(5f);
+        priceList.add(5f);
+        priceList.add(5f);
+        priceList.add(5f);
+        priceList.add(5f);
+        priceList.add(5f);
+        priceList.add(5f);
+        priceList.add(5f);
+        priceList.add(5f);
+        priceList.add(5f);
+        priceList.add(5f);
+        priceList.add(5f);
+        priceList.add(5f);
+
+        productPrice.setPrice(600f);
+
+        assertEquals(priceService.calculateProductPrice(componentPrices).getPrice(),productPrice.getPrice());
+    }
+
 }

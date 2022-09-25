@@ -1,10 +1,10 @@
-package com.example.microservice.ampq;
+package com.priceservice.ampq;
 
-import com.example.microservice.exception.ComponentPricesNotFoundException;
-import com.example.microservice.exception.FloatingPointOverflowException;
-import com.example.microservice.model.ComponentPrices;
-import com.example.microservice.model.ProductPrice;
-import com.example.microservice.service.PriceService;
+import com.priceservice.exception.ComponentPricesNotFoundException;
+import com.priceservice.exception.FloatingPointOverflowException;
+import com.priceservice.model.ComponentPrices;
+import com.priceservice.model.ProductPrice;
+import com.priceservice.service.PriceService;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

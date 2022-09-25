@@ -1,12 +1,12 @@
-package com.example.microservice.service;
+package com.priceservice.service;
 
-import com.example.microservice.exception.ComponentPricesNotFoundException;
-import com.example.microservice.exception.FloatingPointOverflowException;
+import com.priceservice.exception.ComponentPricesNotFoundException;
+import com.priceservice.exception.FloatingPointOverflowException;
+import com.priceservice.model.ProductPrice;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-import com.example.microservice.model.ComponentPrices;
-import com.example.microservice.model.ProductPrice;
+import com.priceservice.model.ComponentPrices;
 
 import java.util.LinkedList;
 import java.util.List;

@@ -1,12 +1,10 @@
-package com.example.microservice.service;
+package com.priceservice.service;
 
-import com.example.microservice.model.ComponentPrices;
-import com.example.microservice.model.ProductPrice;
+import com.priceservice.model.ComponentPrices;
+import com.priceservice.model.ProductPrice;
+import com.priceservice.exception.ComponentPricesNotFoundException;
+import com.priceservice.exception.FloatingPointOverflowException;
 import org.springframework.stereotype.Service;
-
-import com.example.microservice.exception.FloatingPointOverflowException;
-import com.example.microservice.exception.ComponentPricesNotFoundException;
-
 
 import java.util.List;
 
@@ -19,7 +17,7 @@ public class PriceService {
         List<Float> priceList = request.getPriceList();
 
         for (int j = 0; j < priceList.size(); j++) {
-            if (priceList.get(j)<=0) {
+            if (priceList.get(j) <= 0) {
                 throw new ComponentPricesNotFoundException();
             }
             amount += priceList.get(j);

@@ -1,4 +1,4 @@
-package com.example.microservice.model;
+package com.priceservice.model;
 
 public class ProductPrice {
 

@@ -16,15 +16,16 @@ public class PriceService {
 
         List<Float> priceList = request.getPriceList();
 
-        for (int j = 0; j < priceList.size(); j++) {
-            if (priceList.get(j) <= 0) {
+        for (Float componentPrice : priceList) {
+            if (componentPrice <= 0) {
                 throw new ComponentPricesNotFoundException();
             }
-            amount += priceList.get(j);
+            amount += componentPrice;
         }
         if (amount >= Float.MAX_VALUE) {
             throw new FloatingPointOverflowException();
         }
+
         return new ProductPrice(amount);
     }
 }

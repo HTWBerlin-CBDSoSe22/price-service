@@ -4,6 +4,7 @@ import com.priceservice.exception.ComponentPricesNotFoundException;
 import com.priceservice.exception.FloatingPointOverflowException;
 import com.priceservice.model.ProductPrice;
 import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 import com.priceservice.model.ComponentPrices;
@@ -15,89 +16,93 @@ class PriceServiceTest {
 
     List<Float> priceList = new LinkedList<>();
     ComponentPrices componentPrices = new ComponentPrices(priceList);
-    ProductPrice productPrice = new ProductPrice(0f);
+    ProductPrice expectedProductPrice = new ProductPrice(0f);
     private final PriceService priceService = new PriceService();
 
     @Test
-    void calculateHappyTwoComponents() throws ComponentPricesNotFoundException, FloatingPointOverflowException {
+    void calculateHappyTwoComponents() {
         priceList.add(5f);
         priceList.add(3f);
-        productPrice.setPrice(8f);
+        expectedProductPrice.setPrice(8f);
 
-        assertEquals(priceService.calculateProductPrice(componentPrices).getPrice(),productPrice.getPrice());
+        assertEquals(priceService.calculateProductPrice(componentPrices).getPrice(), expectedProductPrice.getPrice());
     }
 
     @Test
-    void calculateHappyThreeComponents() throws ComponentPricesNotFoundException, FloatingPointOverflowException {
+    void calculateHappyThreeComponents() {
         priceList.add(5f);
         priceList.add(5f);
         priceList.add(3f);
-        productPrice.setPrice(13f);
+        expectedProductPrice.setPrice(13f);
 
-        assertEquals(priceService.calculateProductPrice(componentPrices).getPrice(),productPrice.getPrice());
+        assertEquals(priceService.calculateProductPrice(componentPrices).getPrice(), expectedProductPrice.getPrice());
     }
 
     @Test
-    void calculateHappyJustOneComponent() throws ComponentPricesNotFoundException, FloatingPointOverflowException {
+    void calculateHappyJustOneComponent() {
         priceList.add(5f);
-        productPrice.setPrice(5f);
+        expectedProductPrice.setPrice(5f);
 
-        assertEquals(priceService.calculateProductPrice(componentPrices).getPrice(),productPrice.getPrice());
+        assertEquals(priceService.calculateProductPrice(componentPrices).getPrice(), expectedProductPrice.getPrice());
     }
 
     @Test
-    void calculateHappyOddNumbersOne() throws ComponentPricesNotFoundException, FloatingPointOverflowException {
+    void calculateHappyOddNumbersOne() {
         priceList.add(5.7f);
         priceList.add(4.3f);
-        productPrice.setPrice(10f);
+        expectedProductPrice.setPrice(10f);
 
-        assertEquals(priceService.calculateProductPrice(componentPrices).getPrice(),productPrice.getPrice());
+        assertEquals(priceService.calculateProductPrice(componentPrices).getPrice(), expectedProductPrice.getPrice());
     }
 
     @Test
-    void calculateHappyOddNumbersTwo() throws ComponentPricesNotFoundException, FloatingPointOverflowException {
+    void calculateHappyOddNumbersTwo() {
         priceList.add(5.7f);
         priceList.add(4.4f);
-        productPrice.setPrice(10.1f);
+        expectedProductPrice.setPrice(10.1f);
 
-        assertEquals(priceService.calculateProductPrice(componentPrices).getPrice(),productPrice.getPrice());
+        assertEquals(priceService.calculateProductPrice(componentPrices).getPrice(), expectedProductPrice.getPrice());
     }
 
     @Test
-    void calculateBadNegativeNumbers(){
+    void calculateBadNegativeNumbers() {
         priceList.add(-5f);
         priceList.add(-3f);
-        productPrice.setPrice(10f);
 
         assertThrows(ComponentPricesNotFoundException.class, ()
-                -> {priceService.calculateProductPrice(componentPrices);} );
+                -> {
+            priceService.calculateProductPrice(componentPrices);
+        });
     }
 
     @Test
-    void calculateBadZero(){
+    void calculateBadZero() {
         priceList.add(5f);
         priceList.add(0f);
-        productPrice.setPrice(10f);
 
         assertThrows(ComponentPricesNotFoundException.class, ()
-                -> {priceService.calculateProductPrice(componentPrices);} );
+                -> {
+            priceService.calculateProductPrice(componentPrices);
+        });
     }
 
     @Test
-    void calculateBadNoComponent() throws ComponentPricesNotFoundException, FloatingPointOverflowException {
-        productPrice.setPrice(0f);
+    void calculateBadNoComponent() {
+        expectedProductPrice.setPrice(0f);
 
-        assertEquals(priceService.calculateProductPrice(componentPrices).getPrice(),productPrice.getPrice());
+        assertEquals(priceService.calculateProductPrice(componentPrices).getPrice(), expectedProductPrice.getPrice());
     }
 
     @Test
-    void calculateBadFloatExploit(){
+    void calculateBadFloatExploit() {
         priceList.add(1f);
         priceList.add(Float.MAX_VALUE);
-        productPrice.setPrice(0f);
+        expectedProductPrice.setPrice(0f);
 
         assertThrows(FloatingPointOverflowException.class, ()
-                -> {priceService.calculateProductPrice(componentPrices);} );
+                -> {
+            priceService.calculateProductPrice(componentPrices);
+        });
     }
 
     @Test
@@ -223,9 +228,9 @@ class PriceServiceTest {
         priceList.add(5f);
         priceList.add(5f);
 
-        productPrice.setPrice(600f);
+        expectedProductPrice.setPrice(600f);
 
-        assertEquals(priceService.calculateProductPrice(componentPrices).getPrice(),productPrice.getPrice());
+        assertEquals(priceService.calculateProductPrice(componentPrices).getPrice(), expectedProductPrice.getPrice());
     }
 
 }

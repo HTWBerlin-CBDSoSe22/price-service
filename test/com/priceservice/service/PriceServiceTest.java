@@ -1,7 +1,5 @@
 package com.priceservice.service;
 
-import com.priceservice.exception.ComponentPricesNotFoundException;
-import com.priceservice.exception.FloatingPointOverflowException;
 import com.priceservice.model.ProductPrice;
 import org.junit.jupiter.api.Test;
 
@@ -16,14 +14,13 @@ class PriceServiceTest {
 
     List<Float> priceList = new LinkedList<>();
     ComponentPrices componentPrices = new ComponentPrices(priceList);
-    ProductPrice expectedProductPrice = new ProductPrice(0f);
     private final PriceService priceService = new PriceService();
 
     @Test
     void calculateHappyTwoComponents() {
         priceList.add(5f);
         priceList.add(3f);
-        expectedProductPrice.setPrice(8f);
+        ProductPrice expectedProductPrice = new ProductPrice(8f);
 
         assertEquals(priceService.calculateProductPrice(componentPrices).getPrice(), expectedProductPrice.getPrice());
     }
@@ -33,7 +30,7 @@ class PriceServiceTest {
         priceList.add(5f);
         priceList.add(5f);
         priceList.add(3f);
-        expectedProductPrice.setPrice(13f);
+        ProductPrice expectedProductPrice = new ProductPrice(13f);
 
         assertEquals(priceService.calculateProductPrice(componentPrices).getPrice(), expectedProductPrice.getPrice());
     }
@@ -41,7 +38,7 @@ class PriceServiceTest {
     @Test
     void calculateHappyJustOneComponent() {
         priceList.add(5f);
-        expectedProductPrice.setPrice(5f);
+        ProductPrice expectedProductPrice = new ProductPrice(5f);
 
         assertEquals(priceService.calculateProductPrice(componentPrices).getPrice(), expectedProductPrice.getPrice());
     }
@@ -50,7 +47,7 @@ class PriceServiceTest {
     void calculateHappyOddNumbersOne() {
         priceList.add(5.7f);
         priceList.add(4.3f);
-        expectedProductPrice.setPrice(10f);
+        ProductPrice expectedProductPrice = new ProductPrice(10f);
 
         assertEquals(priceService.calculateProductPrice(componentPrices).getPrice(), expectedProductPrice.getPrice());
     }
@@ -59,54 +56,21 @@ class PriceServiceTest {
     void calculateHappyOddNumbersTwo() {
         priceList.add(5.7f);
         priceList.add(4.4f);
-        expectedProductPrice.setPrice(10.1f);
+        ProductPrice expectedProductPrice = new ProductPrice(10.1f);
 
         assertEquals(priceService.calculateProductPrice(componentPrices).getPrice(), expectedProductPrice.getPrice());
     }
 
-    @Test
-    void calculateBadNegativeNumbers() {
-        priceList.add(-5f);
-        priceList.add(-3f);
-
-        assertThrows(ComponentPricesNotFoundException.class, ()
-                -> {
-            priceService.calculateProductPrice(componentPrices);
-        });
-    }
-
-    @Test
-    void calculateBadZero() {
-        priceList.add(5f);
-        priceList.add(0f);
-
-        assertThrows(ComponentPricesNotFoundException.class, ()
-                -> {
-            priceService.calculateProductPrice(componentPrices);
-        });
-    }
 
     @Test
     void calculateBadNoComponent() {
-        expectedProductPrice.setPrice(0f);
+        ProductPrice expectedProductPrice = new ProductPrice(0f);
 
         assertEquals(priceService.calculateProductPrice(componentPrices).getPrice(), expectedProductPrice.getPrice());
     }
 
     @Test
-    void calculateBadFloatExploit() {
-        priceList.add(1f);
-        priceList.add(Float.MAX_VALUE);
-        expectedProductPrice.setPrice(0f);
-
-        assertThrows(FloatingPointOverflowException.class, ()
-                -> {
-            priceService.calculateProductPrice(componentPrices);
-        });
-    }
-
-    @Test
-    void calculateHappyLotsOfComponents() throws ComponentPricesNotFoundException, FloatingPointOverflowException {
+    void calculateHappyLotsOfComponents() {
         priceList.add(5f);
         priceList.add(5f);
         priceList.add(5f);
@@ -228,7 +192,7 @@ class PriceServiceTest {
         priceList.add(5f);
         priceList.add(5f);
 
-        expectedProductPrice.setPrice(600f);
+        ProductPrice expectedProductPrice = new ProductPrice(600f);
 
         assertEquals(priceService.calculateProductPrice(componentPrices).getPrice(), expectedProductPrice.getPrice());
     }

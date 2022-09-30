@@ -1,12 +1,9 @@
 package com.priceservice.service;
 
+import static org.junit.jupiter.api.Assertions.*;
 import com.priceservice.model.ProductPrice;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
-
 import com.priceservice.model.ComponentPrices;
-
 import java.util.LinkedList;
 import java.util.List;
 

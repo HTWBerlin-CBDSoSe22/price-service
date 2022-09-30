@@ -9,17 +9,15 @@ import java.util.List;
 @Service
 public class PriceService {
 
-    public ProductPrice calculateProductPrice(ComponentPrices request) {
+    public ProductPrice calculateProductPrice(ComponentPrices componentPrices) {
+        List<Float> componentPricesList = componentPrices.getPriceList();
+        float calculatedProductPrice = 0;
 
-        List<Float> componentPrices = request.getPriceList();
-
-        float calculatedPrice = 0;
-        for (float componentPrice : componentPrices) {
-            calculatedPrice += componentPrice;
+        for (float componentPrice : componentPricesList) {
+            calculatedProductPrice += componentPrice;
         }
 
-        return new ProductPrice(calculatedPrice);
+        return new ProductPrice(calculatedProductPrice);
     }
-
 
 }
